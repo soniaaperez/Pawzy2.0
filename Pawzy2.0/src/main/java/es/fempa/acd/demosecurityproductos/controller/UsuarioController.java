@@ -1,51 +1,35 @@
 package es.fempa.acd.demosecurityproductos.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import es.fempa.acd.demosecurityproductos.model.Usuario;
+import es.fempa.acd.demosecurityproductos.service.UsuarioService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.Optional;
 
-@Controller
-@RequestMapping("/usuarios")
+@RestController
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
+  private final UsuarioService usuarioService;
 
-    private final UsuarioService usuarioService;
+  public UsuarioController(UsuarioService usuarioService) {
+    this.usuarioService = usuarioService;
+  }
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
+  @GetMapping
+  public List<Usuario> obtenerTodos() {
+    return usuarioService.obtenerTodosLosUsuarios();
+  }
 
-    @PreAuthorize("hasRole('ADMIN')") // Solo los administradores pueden listar usuarios
-    @GetMapping
-    public String listarUsuarios(Model model) {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        model.addAttribute("usuarios", usuarios);
-        return "usuarios/lista"; // Apunta a una plantilla Thymeleaf
-    }
+  @GetMapping("/{email}")
+  public ResponseEntity<Usuario> obtenerPorEmail(@PathVariable String email) {
+    Optional<Usuario> usuario = usuarioService.obtenerUsuarioPorEmail(email);
+    return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+  }
 
-    @PreAuthorize("hasRole('ADMIN')") // Solo los administradores pueden crear nuevos usuarios
-    @GetMapping("/nuevo")
-    public String formularioNuevoUsuario(Model model) {
-        model.addAttribute("roles", Rol.values());
-        return "usuarios/nuevo"; // Apunta a una plantilla Thymeleaf
-    }
-
-    @PreAuthorize("hasRole('ADMIN')") // Solo los administradores pueden guardar nuevos usuarios
-    @PostMapping
-    public String crearUsuario(@RequestParam String username,
-                               @RequestParam String password,
-                               @RequestParam String email,
-                               @RequestParam Rol rol) {
-        usuarioService.crearUsuario(username, password, email, rol);
-        return "redirect:/usuarios";
-    }
-
-    @PreAuthorize("hasRole('ADMIN')") // Solo los administradores pueden eliminar usuarios
-    @PostMapping("/{id}/eliminar")
-    public String eliminarUsuario(@PathVariable Long id) {
-        usuarioService.eliminarUsuario(id);
-        return "redirect:/usuarios";
-    }
+  @PostMapping
+  public Usuario registrar(@RequestBody Usuario usuario) {
+    return usuarioService.registrarUsuario(usuario);
+  }
 }
+
