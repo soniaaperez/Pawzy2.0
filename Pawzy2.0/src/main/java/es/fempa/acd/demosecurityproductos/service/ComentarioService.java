@@ -1,9 +1,9 @@
 package es.fempa.acd.demosecurityproductos.service;
 
+import es.fempa.acd.demosecurityproductos.model.Comentario;
+import es.fempa.acd.demosecurityproductos.repository.ComentarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.com.mycompany.myapp.shared.collection.domain.Comentario;
-import java.com.mycompany.myapp.shared.collection.repository.ComentarioRepository;
 import java.util.List;
 
 @Service

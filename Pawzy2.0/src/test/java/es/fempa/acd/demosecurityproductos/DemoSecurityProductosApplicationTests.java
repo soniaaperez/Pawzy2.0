@@ -9,5 +9,4 @@ class DemoSecurityProductosApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

@@ -1,10 +1,9 @@
 package es.fempa.acd.demosecurityproductos.service;
 
 
+import es.fempa.acd.demosecurityproductos.model.Foto;
+import es.fempa.acd.demosecurityproductos.repository.FotoRepository;
 import org.springframework.stereotype.Service;
-
-import java.com.mycompany.myapp.shared.collection.domain.Foto;
-import java.com.mycompany.myapp.shared.collection.repository.FotoRepository;
 import java.util.List;
 
 @Service

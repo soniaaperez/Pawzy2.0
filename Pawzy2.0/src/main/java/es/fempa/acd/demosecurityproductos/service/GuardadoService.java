@@ -1,9 +1,10 @@
 package es.fempa.acd.demosecurityproductos.service;
 
+import es.fempa.acd.demosecurityproductos.model.Guardado;
+import es.fempa.acd.demosecurityproductos.repository.GuardadoRepository;
 import org.springframework.stereotype.Service;
 
-import java.com.mycompany.myapp.shared.collection.domain.Guardado;
-import java.com.mycompany.myapp.shared.collection.repository.GuardadoRepository;
+
 import java.util.List;
 import java.util.Optional;
 

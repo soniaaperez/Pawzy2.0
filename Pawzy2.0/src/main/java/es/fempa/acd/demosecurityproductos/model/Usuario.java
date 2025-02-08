@@ -73,4 +73,5 @@ public class Usuario {
   public void setComentarios(List<Comentario> comentarios) { this.comentarios = comentarios; }
   public List<Guardado> getGuardados() { return guardados; }
   public void setGuardados(List<Guardado> guardados) { this.guardados = guardados; }
+
 }

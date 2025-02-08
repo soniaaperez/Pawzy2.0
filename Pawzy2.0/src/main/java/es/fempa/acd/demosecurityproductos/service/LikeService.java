@@ -1,9 +1,10 @@
 package es.fempa.acd.demosecurityproductos.service;
 
+import es.fempa.acd.demosecurityproductos.model.Like;
+import es.fempa.acd.demosecurityproductos.repository.LikeRepository;
 import org.springframework.stereotype.Service;
 
-import java.com.mycompany.myapp.shared.collection.domain.Like;
-import java.com.mycompany.myapp.shared.collection.repository.LikeRepository;
+
 import java.util.List;
 import java.util.Optional;
 
