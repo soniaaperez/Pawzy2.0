@@ -103,6 +103,9 @@ h1 {
     font-weight: bold;
     color: #a37c7c;
     animation: bounce 1.5s infinite;
+    display: flex; /* Asegúrate de que esté centrado */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
 }
 
 @keyframes bounce {
